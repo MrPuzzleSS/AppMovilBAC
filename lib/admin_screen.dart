@@ -34,8 +34,8 @@ class _AdminScreenState extends State<AdminScreen> {
 @override
 Widget build(BuildContext context) {
   return Scaffold(
-    appBar: MenuAppBar(),
-    drawer: MenuDrawer(),
+    appBar: const MenuAppBar(),
+    drawer: const MenuDrawer(),
     body: Center(
       child: _widgetOptions.elementAt(_selectedIndex),
     ),

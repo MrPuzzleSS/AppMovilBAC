@@ -94,7 +94,8 @@ class _ServiceRegisterScreenState extends State<ServiceRegisterScreen> {
       );
     }
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(

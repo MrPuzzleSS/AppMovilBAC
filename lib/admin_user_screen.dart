@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'package:consumo_api_libros/presentation/user_register_screen.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +28,6 @@ class _AdminUserScreenState extends State<AdminUserScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-  
           title: const Text('Editar Usuario'),
           content: SingleChildScrollView(
             child: Column(
@@ -106,7 +104,7 @@ class _AdminUserScreenState extends State<AdminUserScreen> {
       },
     );
   }
-  
+
   Future<void> fetchUsers() async {
     final response = await http.get(Uri.parse(
         'https://trabajo-presentacion-barberia.onrender.com/api/users'));
@@ -134,64 +132,14 @@ class _AdminUserScreenState extends State<AdminUserScreen> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      
       itemCount: users.length,
       itemBuilder: (context, index) {
         final user = users[index];
         return ListTile(
           title: Text(user['nombre']),
           subtitle: Text(user['correo']),
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () {
-                  editUser(user);
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Eliminar Usuario'),
-                        content: const Text(
-                            '¿Seguro que deseas eliminar este usuario?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('Cancelar'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              deleteUser(user['_id']);
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text('Eliminar'),
-                          ),
-                           ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> UserRegisterScreen(),));
-                          },
-                          child: const Text('Cancelar'),
-                        ),
-                        ],
-                      );
-                      
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
         );
       },
     );
-    
   }
 }

@@ -40,7 +40,7 @@ class _AdminServiceScreenState extends State<AdminServiceScreen> {
         return AlertDialog(
           title: const Text('Editar Servicio'),
           content: SingleChildScrollView(
-            child: Column( 
+            child: Column(
               children: [
                 TextField(
                   decoration: const InputDecoration(labelText: 'serviceName'),
@@ -165,17 +165,6 @@ class _AdminServiceScreenState extends State<AdminServiceScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ServiceRegisterScreen(),
-              ),
-            );
-          },
-          child: const Text('Registrar Servicio'),
-        ),
         _buildSearchField(),
         Expanded(
           child: ListView.builder(
@@ -233,45 +222,6 @@ class _AdminServiceScreenState extends State<AdminServiceScreen> {
           Text(
             'Precio: ${service['price']}',
             style: const TextStyle(fontSize: 14),
-          ),
-        ],
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Padding(
-              padding: EdgeInsets.all(18.0),
-              child: Icon(Icons.delete, size: 28),
-            ),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Eliminar servicio'),
-                    content: const Text(
-                      '¿Seguro que deseas eliminar este servicio?',
-                    ),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Cancelar'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          deleteUser(service['_id']);
-                          Navigator.of(context).pop();
-                        },
-                        child: const Text('Eliminar'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
           ),
         ],
       ),
